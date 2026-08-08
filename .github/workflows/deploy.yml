@@ -3,26 +3,34 @@ name: CI/CD Production Build & Deploy
 on:
   push:
     branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
   workflow_dispatch:
 
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+# Grant permissions required for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-    strategy:
-      matrix:
-        node-version: [22.x]
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: ⚙️ Set up Node.js ${{ matrix.node-version }}
+      - name: ⚙️ Set up Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '22.x'
           cache: 'npm'
           cache-dependency-path: 'package-lock.json'
 
@@ -32,14 +40,20 @@ jobs:
       - name: 🔍 Run Type Check & Linter
         run: npm run lint
 
-      - name: 🏗️ Build Full-Stack Application
+      - name: 🏗️ Build Application
         run: npm run build
 
-      - name: 📂 Upload Build Artifacts
-        uses: actions/upload-artifact@v4
+      - name: 📄 Create 404.html for SPA Fallback
+        run: cp dist/index.html dist/404.html
+
+      - name: 🔧 Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: 📂 Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: dist-artifacts
-          path: |
-            dist/
-            package.json
-            server.ts
+          path: 'dist'
+
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
