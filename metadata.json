@@ -1,0 +1,6 @@
+{
+  "name": "Sky 的 AI 个人空间",
+  "description": "Sky 的个人网站升级版，探索 1 Person + AI = 1 Team 的生活与工作流。内置 CatOS 控制台、Sky 设计系统及 Gemini 驱动的 AI 搭档。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

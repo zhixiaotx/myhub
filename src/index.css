@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Global Dark Mode Styling */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body,
+html.dark .min-h-screen {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+}
+
+/* Backgrounds in Dark Mode */
+html.dark .bg-white {
+  background-color: #1e293b !important;
+}
+
+html.dark .bg-\[\#fcfbfa\],
+html.dark .bg-\[\#fbfaf8\],
+html.dark .bg-\[\#faf9f6\] {
+  background-color: #0f172a !important;
+}
+
+html.dark .bg-\[\#f5f3ef\],
+html.dark .bg-\[\#f4f2ec\],
+html.dark .bg-\[\#ece9e2\],
+html.dark .bg-\[\#ece9e2\]\/60,
+html.dark .bg-\[\#e8e6df\] {
+  background-color: #1e293b !important;
+}
+
+/* Text Colors in Dark Mode */
+html.dark .text-\[\#1e293b\] {
+  color: #f8fafc !important;
+}
+
+html.dark .text-\[\#4c4943\],
+html.dark .text-\[\#5c5952\],
+html.dark .text-\[\#334155\] {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-\[\#7c786c\],
+html.dark .text-\[\#8f8b80\] {
+  color: #94a3b8 !important;
+}
+
+/* Border Colors in Dark Mode */
+html.dark .border-\[\#e8e6df\],
+html.dark .border-\[\#dcd8cd\],
+html.dark .border-\[\#e2e8f0\] {
+  border-color: #334155 !important;
+}
+
+html.dark header {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+  border-color: #334155 !important;
+}
+
+html.dark footer {
+  background-color: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+/* Input / Select / Textarea in Dark Mode */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+
