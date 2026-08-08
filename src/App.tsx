@@ -56,6 +56,13 @@ export default function App() {
           <div className="flex items-center gap-3">
             <img
               src={logoImg}
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.dataset.failed) {
+                  target.dataset.failed = "true";
+                  target.src = "./logo.jpg";
+                }
+              }}
               alt="Sky Logo"
               className="w-9 h-9 rounded-lg object-cover shadow-2xs"
               referrerPolicy="no-referrer"
@@ -186,6 +193,13 @@ export default function App() {
           <div className="flex items-center gap-3">
             <img
               src={logoImg}
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.dataset.failed) {
+                  target.dataset.failed = "true";
+                  target.src = "./logo.jpg";
+                }
+              }}
               alt="Sky Footer Logo"
               className="w-8 h-8 rounded-lg object-cover"
               referrerPolicy="no-referrer"

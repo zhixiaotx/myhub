@@ -16,6 +16,13 @@ export default function IntroSection() {
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden shadow-md transform transition-all duration-300 group-hover:scale-105">
               <img
                 src={logoImg}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.failed) {
+                    target.dataset.failed = "true";
+                    target.src = "./logo.jpg";
+                  }
+                }}
                 alt="Sky Avatar"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
