@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Terminal, Layout, Cpu, BookOpen, Bot, Compass, Sun, Moon } from "lucide-react";
+import logoImg from "./assets/logo.jpg";
 import IntroSection from "./components/IntroSection";
 import ColaOSDashboard from "./components/ColaOSDashboard";
 import DesignSystemPlayground from "./components/DesignSystemPlayground";
@@ -54,7 +55,7 @@ export default function App() {
           {/* Logo / Title */}
           <div className="flex items-center gap-3">
             <img
-              src="./logo.jpg"
+              src={logoImg}
               alt="Sky Logo"
               className="w-9 h-9 rounded-lg object-cover shadow-2xs"
               referrerPolicy="no-referrer"
@@ -184,7 +185,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <img
-              src="./logo.jpg"
+              src={logoImg}
               alt="Sky Footer Logo"
               className="w-8 h-8 rounded-lg object-cover"
               referrerPolicy="no-referrer"

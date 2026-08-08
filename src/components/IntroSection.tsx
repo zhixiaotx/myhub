@@ -1,5 +1,6 @@
 import React from "react";
 import { Compass, GraduationCap, MapPin, Briefcase, Award, Zap } from "lucide-react";
+import logoImg from "../assets/logo.jpg";
 
 export default function IntroSection() {
   return (
@@ -14,7 +15,7 @@ export default function IntroSection() {
             {/* Elegant framing instead of boring round avatar */}
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden shadow-md transform transition-all duration-300 group-hover:scale-105">
               <img
-                src="./logo.jpg"
+                src={logoImg}
                 alt="Sky Avatar"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
