@@ -1,17 +1,16 @@
-name: CI/CD Production Build & Deploy
+name: Build & Deploy to gh-pages Branch & GitHub Pages
 
 on:
   push:
     branches: [ "main", "master" ]
   workflow_dispatch:
 
-# Grant permissions required for GitHub Pages deployment
+# Grant permissions required for deploying to gh-pages branch and GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -40,11 +39,14 @@ jobs:
       - name: 🔍 Run Type Check & Linter
         run: npm run lint
 
-      - name: 🏗️ Build Application
-        run: npm run build
+      - name: 🏗️ Build Application for GitHub Pages
+        run: npm run build:gh-pages
 
-      - name: 📄 Create 404.html for SPA Fallback
-        run: cp dist/index.html dist/404.html
+      - name: 🌿 Deploy & Push to gh-pages Branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
 
       - name: 🔧 Setup Pages
         uses: actions/configure-pages@v5
@@ -54,6 +56,6 @@ jobs:
         with:
           path: 'dist'
 
-      - name: 🚀 Deploy to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages (Direct)
         id: deployment
         uses: actions/deploy-pages@v4
